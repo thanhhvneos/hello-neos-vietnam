@@ -1,7 +1,10 @@
 import React from 'react'
-import { SafeAreaView, Text, TextInput, View } from 'react-native'
+import { Button, SafeAreaView, Text, TextInput, View } from 'react-native'
 
 const App = () => {
+    let texts = ''
+    const [name, setName] = React.useState('')
+
     return <SafeAreaView style={{ flex: 1 }}>
         <View style={{
             height: 50,
@@ -22,7 +25,7 @@ const App = () => {
 
         <TextInput
             style={{
-                marginTop: 30,
+                marginVertical: 20,
                 marginHorizontal: 20,
                 height: 50,
                 borderWidth: 1,
@@ -31,9 +34,24 @@ const App = () => {
                 textAlign: 'center',
                 fontSize: 16
             }}
-            placeholder='type a name here'
             autoCorrect={false}
+            placeholder='type a name here'
+            onChangeText={(text) => {
+                // console.log(text)
+                texts = text
+            }}
         />
+
+        <Button title='Say hello'
+            onPress={() => {
+                setName(texts)
+            }} />
+
+        <Text style={{
+            marginTop: 20,
+            fontSize: 20,
+            alignSelf: 'center'
+        }}>Hello {name}</Text>
 
     </SafeAreaView>
 }
